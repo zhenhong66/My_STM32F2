@@ -236,7 +236,8 @@ static void cmd_Ri2c (char *par) {
 
 		unsigned int i,j;
 		uint32_t  ADC16=0;
-		double k;
+		uint16_t k4,k3,k2,k1,k0;
+	
 		double T;
 
 		
@@ -248,8 +249,7 @@ static void cmd_Ri2c (char *par) {
 			for(j=0;j < 6000;j++);
 		}
 		 */
-		 k=pow(10,-2);
-		 printf("%f\n",k);
+
 		//TSYS01_WaitStandbyState();
 		NumDataRead=2;
 		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
@@ -260,7 +260,9 @@ static void cmd_Ri2c (char *par) {
 		}
 		//while (NumDataRead > 0)
   		//{}  
+		k4=Rx_Buffer[0]*256+Rx_Buffer[1];
 		printf("%x %x\n",Rx_Buffer[0],Rx_Buffer[1]);
+		printf("k4=%d\n",k4);
 
 
 		NumDataRead=2;
@@ -272,7 +274,51 @@ static void cmd_Ri2c (char *par) {
 		}
 		//while (NumDataRead > 0)
   		//{}  
+		k3=Rx_Buffer[0]*256+Rx_Buffer[1];
 		printf("%x %x\n",Rx_Buffer[0],Rx_Buffer[1]);
+		printf("k3=%d\n",k3);
+
+	   	NumDataRead=2;
+		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
+		TSYS01_Read2byte(Rx_Buffer,&(Rx_Buffer[1]),TSYS01_Prom_Read_Add3, (uint16_t *)(&NumDataRead));
+		for(i=0;i<36;i++)
+		{
+			for(j=0;j < 6000;j++);
+		}
+		//while (NumDataRead > 0)
+  		//{}  
+		k2=Rx_Buffer[0]*256+Rx_Buffer[1];
+		printf("%x %x\n",Rx_Buffer[0],Rx_Buffer[1]);
+		printf("k2=%d\n",k2);
+
+			NumDataRead=2;
+		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
+		TSYS01_Read2byte(Rx_Buffer,&(Rx_Buffer[1]),TSYS01_Prom_Read_Add4, (uint16_t *)(&NumDataRead));
+		for(i=0;i<36;i++)
+		{
+			for(j=0;j < 6000;j++);
+		}
+		//while (NumDataRead > 0)
+  		//{}  
+		k1=Rx_Buffer[0]*256+Rx_Buffer[1];
+		printf("%x %x\n",Rx_Buffer[0],Rx_Buffer[1]);
+		printf("k1=%d\n",k1);
+
+
+		NumDataRead=2;
+		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
+		TSYS01_Read2byte(Rx_Buffer,&(Rx_Buffer[1]),TSYS01_Prom_Read_Add5, (uint16_t *)(&NumDataRead));
+		for(i=0;i<36;i++)
+		{
+			for(j=0;j < 6000;j++);
+		}
+		//while (NumDataRead > 0)
+  		//{}  
+		k0=Rx_Buffer[0]*256+Rx_Buffer[1];
+		printf("%x %x\n",Rx_Buffer[0],Rx_Buffer[1]);
+		printf("k0=%d\n",k0);
+
+	
 
 
 
@@ -304,11 +350,11 @@ static void cmd_Ri2c (char *par) {
 			for(j=0;j < 6000;j++);
 		}
 		ADC16= (Rx_Buffer[0]*256*256 + Rx_Buffer[1]*256 + Rx_Buffer[2])/256;
-		T = (-2)* 28446 * pow(10,-21) * pow(ADC16,4) +
-		      4 * 24926 * pow(10,-16) * pow(ADC16,3) +
-			(-2)* 36016 * pow(10,-11) * pow(ADC16,2) +
-			  1 * 32791 * pow(10,-6)  * ADC16        +
-			(-1.5)*40781 * pow(10,-2) ;
+		T = (-2)* k4 * pow(10,-21) * pow(ADC16,4) +
+		      4 * k3 * pow(10,-16) * pow(ADC16,3) +
+			(-2)* k2 * pow(10,-11) * pow(ADC16,2) +
+			  1 * k1 * pow(10,-6)  * ADC16        +
+			(-1.5)*k0 * pow(10,-2) ;
 		
 		//while (NumDataRead > 0)
   		//{}  
@@ -903,6 +949,7 @@ void TIM5_IRQHandler(void)   //TIM5中斷
 {
 	unsigned int i,j;
 	uint32_t  ADC16=0;
+	uint16_t k4,k3,k2,k1,k0;
 	double T;
 	if (TIM_GetITStatus(TIM5, TIM_IT_Update) != RESET) //檢查指定的TIM中斷發生與否:TIM 中斷源 
 		{
@@ -917,6 +964,70 @@ void TIM5_IRQHandler(void)   //TIM5中斷
 		 /*
 		 	RTC_TimeShow();
 		   */
+
+			//TSYS01_WaitStandbyState();
+		NumDataRead=2;
+		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
+		TSYS01_Read2byte(Rx_Buffer,&(Rx_Buffer[1]),TSYS01_Prom_Read_Add1, (uint16_t *)(&NumDataRead));
+		for(i=0;i<36;i++)
+		{
+			for(j=0;j < 6000;j++);
+		}
+		//while (NumDataRead > 0)
+  		//{}  
+		k4=Rx_Buffer[0]*256+Rx_Buffer[1];
+		
+
+		NumDataRead=2;
+		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
+		TSYS01_Read2byte(Rx_Buffer,&(Rx_Buffer[1]),TSYS01_Prom_Read_Add2, (uint16_t *)(&NumDataRead));
+		for(i=0;i<36;i++)
+		{
+			for(j=0;j < 6000;j++);
+		}
+		//while (NumDataRead > 0)
+  		//{}  
+		k3=Rx_Buffer[0]*256+Rx_Buffer[1];
+		
+
+	   	NumDataRead=2;
+		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
+		TSYS01_Read2byte(Rx_Buffer,&(Rx_Buffer[1]),TSYS01_Prom_Read_Add3, (uint16_t *)(&NumDataRead));
+		for(i=0;i<36;i++)
+		{
+			for(j=0;j < 6000;j++);
+		}
+		//while (NumDataRead > 0)
+  		//{}  
+		k2=Rx_Buffer[0]*256+Rx_Buffer[1];
+	
+			NumDataRead=2;
+		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
+		TSYS01_Read2byte(Rx_Buffer,&(Rx_Buffer[1]),TSYS01_Prom_Read_Add4, (uint16_t *)(&NumDataRead));
+		for(i=0;i<36;i++)
+		{
+			for(j=0;j < 6000;j++);
+		}
+		//while (NumDataRead > 0)
+  		//{}  
+		k1=Rx_Buffer[0]*256+Rx_Buffer[1];
+		
+
+
+		NumDataRead=2;
+		//TSYS01_ReadBuffer(Rx_Buffer,TSYS01_Prom_Read_Add0, (uint16_t *)(&NumDataRead));
+		TSYS01_Read2byte(Rx_Buffer,&(Rx_Buffer[1]),TSYS01_Prom_Read_Add5, (uint16_t *)(&NumDataRead));
+		for(i=0;i<36;i++)
+		{
+			for(j=0;j < 6000;j++);
+		}
+		//while (NumDataRead > 0)
+  		//{}  
+		k0=Rx_Buffer[0]*256+Rx_Buffer[1];
+		
+
+
+
 		TSYS01_SetCommand(TSYS01_Start_Temp_Conver);
 
 		for(i=0;i<36;i++)
@@ -941,11 +1052,11 @@ void TIM5_IRQHandler(void)   //TIM5中斷
 			for(j=0;j < 6000;j++);
 		}
 		ADC16= (Rx_Buffer[0]*256*256 + Rx_Buffer[1]*256 + Rx_Buffer[2])/256;
-		T = (-2)* 28446 * pow(10,-21) * pow(ADC16,4) +
-		      4 * 24926 * pow(10,-16) * pow(ADC16,3) +
-			(-2)* 36016 * pow(10,-11) * pow(ADC16,2) +
-			  1 * 32791 * pow(10,-6)  * ADC16        +
-			(-1.5)*40781 * pow(10,-2) ;
+		T = (-2)* k4 * pow(10,-21) * pow(ADC16,4) +
+		      4 * k3 * pow(10,-16) * pow(ADC16,3) +
+			(-2)* k2 * pow(10,-11) * pow(ADC16,2) +
+			  1 * k1 * pow(10,-6)  * ADC16        +
+			(-1.5)*k0 * pow(10,-2) ;
 	
 		printf("%x %x %x\n",Rx_Buffer[0],Rx_Buffer[1],Rx_Buffer[2]);
 		printf("T=%4.2f\n",T);
