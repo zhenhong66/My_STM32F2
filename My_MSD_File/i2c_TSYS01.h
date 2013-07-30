@@ -103,11 +103,16 @@
 typedef unsigned char   bit;
 
 uint32_t TSYS01_ReadBuffer(uint8_t* pBuffer , uint16_t ReadAddr, uint16_t* NumByteToRead);
-uint32_t TSYS01_SetCommand(uint16_t SetCommand);
+//uint32_t TSYS01_SetCommand(uint16_t SetCommand);
+uint32_t TSYS01_SetCommand(uint16_t SetCommand,uint16_t SelDev);
 void TSYS01_LowLevel_DMAConfig(uint32_t pBuffer, uint32_t BufferSize, uint32_t Direction);
 uint32_t TSYS01_WaitStandbyState(void);
-uint32_t TSYS01_Read2byte(uint8_t* pBuffer,uint8_t* pBuffer1, uint16_t ReadAddr, uint16_t* NumByteToRead);    
-uint32_t TSYS01_Read3byte(uint8_t* pBuffer,uint8_t* pBuffer1 , uint8_t* pBuffer2 ,uint16_t ReadAddr, uint16_t* NumByteToRead);  
+//uint32_t TSYS01_Read2byte(uint8_t* pBuffer,uint8_t* pBuffer1, uint16_t ReadAddr, uint16_t* NumByteToRead);
+uint32_t TSYS01_Read2byte(uint8_t* pBuffer,uint8_t* pBuffer1, uint16_t ReadAddr, uint16_t SelDev);    
+//uint32_t TSYS01_Read3byte(uint8_t* pBuffer,uint8_t* pBuffer1 , uint8_t* pBuffer2 ,uint16_t ReadAddr, uint16_t* NumByteToRead);  
+uint32_t TSYS01_Read3byte(uint8_t* pBuffer,uint8_t* pBuffer1 , uint8_t* pBuffer2 ,uint16_t ReadAddr, uint16_t SelDev);  
+
+
 
 void TSYS01_I2C_INIT(void);
 //void TSYS01_I2C_READ_PROM_WORD(char cAddress, char *cPROM);

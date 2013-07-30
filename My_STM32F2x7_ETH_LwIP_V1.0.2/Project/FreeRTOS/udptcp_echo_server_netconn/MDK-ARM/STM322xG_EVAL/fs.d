@@ -1,0 +1,13 @@
+.\STM322xG_EVAL\fs.o: ..\src\fs.c
+.\STM322xG_EVAL\fs.o: ..\..\..\..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/opt.h
+.\STM322xG_EVAL\fs.o: ..\inc\lwipopts.h
+.\STM322xG_EVAL\fs.o: ..\..\..\..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/debug.h
+.\STM322xG_EVAL\fs.o: ..\..\..\..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/arch.h
+.\STM322xG_EVAL\fs.o: ..\..\..\..\Utilities\Third_Party\lwip_v1.3.2\port\STM32F2x7\arch/cc.h
+.\STM322xG_EVAL\fs.o: ..\..\..\..\Utilities\Third_Party\lwip_v1.3.2\port\STM32F2x7\arch/cpu.h
+.\STM322xG_EVAL\fs.o: C:\Keil\ARM\RV31\Inc\stdio.h
+.\STM322xG_EVAL\fs.o: ..\..\..\..\Utilities\Third_Party\lwip_v1.3.2\src\include\lwip/def.h
+.\STM322xG_EVAL\fs.o: ..\inc\fs.h
+.\STM322xG_EVAL\fs.o: ..\inc\fsdata.h
+.\STM322xG_EVAL\fs.o: C:\Keil\ARM\RV31\Inc\string.h
+.\STM322xG_EVAL\fs.o: ..\src\fsdata.c

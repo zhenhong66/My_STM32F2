@@ -147,10 +147,10 @@ __IO uint16_t* TSYS01_DataReadPointer;
 	}
 
 
-uint32_t TSYS01_Read2byte(uint8_t* pBuffer,uint8_t* pBuffer1 ,uint16_t ReadAddr, uint16_t* NumByteToRead)
+uint32_t TSYS01_Read2byte(uint8_t* pBuffer,uint8_t* pBuffer1 ,uint16_t ReadAddr, uint16_t SelDev)
 {  
-  	TSYS01_DataReadPointer = NumByteToRead;
-  
+  	//TSYS01_DataReadPointer = NumByteToRead;
+   TSYS01_Address=SelDev;
   /*!< While the bus is busy */
   TSYS01_Timeout = TSYS01_LONG_TIMEOUT;
   while(I2C_GetFlagStatus(TSYS01_I2C, I2C_FLAG_BUSY))
@@ -235,7 +235,7 @@ uint32_t TSYS01_Read2byte(uint8_t* pBuffer,uint8_t* pBuffer1 ,uint16_t ReadAddr,
 	
     
     /*!< Decrement the read bytes counter */
-    (uint16_t)(*NumByteToRead)--;        
+    //(uint16_t)(*NumByteToRead)--;        
 
 
 
@@ -252,7 +252,7 @@ uint32_t TSYS01_Read2byte(uint8_t* pBuffer,uint8_t* pBuffer1 ,uint16_t ReadAddr,
 	
     
     /*!< Decrement the read bytes counter */
-    (uint16_t)(*NumByteToRead)--;       
+    //(uint16_t)(*NumByteToRead)--;       
 	
 	
 	/*!< Disable Acknowledgment */
@@ -282,10 +282,10 @@ uint32_t TSYS01_Read2byte(uint8_t* pBuffer,uint8_t* pBuffer1 ,uint16_t ReadAddr,
 
 
 
-uint32_t TSYS01_Read3byte(uint8_t* pBuffer,uint8_t* pBuffer1 , uint8_t* pBuffer2 ,uint16_t ReadAddr, uint16_t* NumByteToRead)
+uint32_t TSYS01_Read3byte(uint8_t* pBuffer,uint8_t* pBuffer1 , uint8_t* pBuffer2 ,uint16_t ReadAddr, uint16_t SelDev)
 {  
-  	TSYS01_DataReadPointer = NumByteToRead;
-  
+  	//TSYS01_DataReadPointer = NumByteToRead;
+   TSYS01_Address=SelDev;
   /*!< While the bus is busy */
   TSYS01_Timeout = TSYS01_LONG_TIMEOUT;
   while(I2C_GetFlagStatus(TSYS01_I2C, I2C_FLAG_BUSY))
@@ -370,7 +370,7 @@ uint32_t TSYS01_Read3byte(uint8_t* pBuffer,uint8_t* pBuffer1 , uint8_t* pBuffer2
 	
     
     /*!< Decrement the read bytes counter */
-    (uint16_t)(*NumByteToRead)--;        
+    //(uint16_t)(*NumByteToRead)--;        
 
 
 
@@ -387,7 +387,7 @@ uint32_t TSYS01_Read3byte(uint8_t* pBuffer,uint8_t* pBuffer1 , uint8_t* pBuffer2
 	
     
     /*!< Decrement the read bytes counter */
-    (uint16_t)(*NumByteToRead)--;     
+    //(uint16_t)(*NumByteToRead)--;     
 	
 	
 	
@@ -403,7 +403,7 @@ uint32_t TSYS01_Read3byte(uint8_t* pBuffer,uint8_t* pBuffer1 , uint8_t* pBuffer2
 	
     
     /*!< Decrement the read bytes counter */
-    (uint16_t)(*NumByteToRead)--;     
+    //(uint16_t)(*NumByteToRead)--;     
 	
 	
 	/*!< Disable Acknowledgment */
@@ -569,10 +569,10 @@ uint32_t TSYS01_ReadBuffer(uint8_t* pBuffer ,uint16_t ReadAddr, uint16_t* NumByt
 
 
 
-uint32_t TSYS01_SetCommand(uint16_t SetCommand)
+uint32_t TSYS01_SetCommand(uint16_t SetCommand, uint16_t SelDev)
 {  
  
-  
+  TSYS01_Address=SelDev;
   /*!< While the bus is busy */
   TSYS01_Timeout = TSYS01_LONG_TIMEOUT;
   
